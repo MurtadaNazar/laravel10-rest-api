@@ -2,17 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Purchase extends Model
 {
-    use HasFactory;
-    protected $fillable = ['customer_name', 'total_amount'];
+    protected $fillable = ['customer_name', 'total_amount', 'total_price', 'products'];
 
-    // Purchase.php
-    public function products()
+    public function product()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }

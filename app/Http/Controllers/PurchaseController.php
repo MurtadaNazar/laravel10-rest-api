@@ -1,73 +1,86 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
-use App\Models\Purchase;
 use App\Models\Product;
+use App\Models\Purchase;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
     public function index()
     {
-        $purchases = Purchase::with('products')->get();
+        $purchases = Purchase::all();
         return response()->json($purchases);
     }
 
-    public function show(Purchase $purchase)
+    public function show($id)
     {
-        return response()->json($purchase->load('products'));
+        $purchase = Purchase::with('product')->findOrFail($id);
+        return response()->json($purchase);
     }
 
     public function store(Request $request)
     {
-        $request->validate($this->getValidationRules());
+        $purchaseData = $request->all();
 
-        $purchase = Purchase::create($request->only(['customer_name', 'total_amount']));
+        // Calculate total amount, total price, and product cost for each product
+        $totalAmount = 0;
+        $totalPrice = 0;
 
-        $this->attachProducts($purchase, $request->input('products'));
+        $productsData = [];
 
-        return response()->json(['message' => 'Purchase created successfully'], 201);
+        foreach ($purchaseData['products'] as $productItem) {
+            $product = Product::findOrFail($productItem['product_id']);
+
+            $productCost = $productItem['quantity'] * $product->price;
+            $productItem['cost'] = $productCost;
+
+            $totalAmount += $productItem['quantity'];
+            $totalPrice += $productCost;
+
+            // Update product quantity
+            $product->decrement('quantity', $productItem['quantity']);
+
+            array_push($productsData, $productItem);
+        }
+
+        $purchaseData['total_amount'] = $totalAmount;
+        $purchaseData['total_price'] = $totalPrice;
+        $purchaseData['products'] = json_encode($productsData);
+
+        // Create a new purchase entry
+        $purchase = Purchase::create($purchaseData);
+
+        return response()->json($purchase, 201);
     }
 
-    public function update(Request $request, Purchase $purchase)
+
+    public function update(Request $request, $id)
     {
-        $request->validate($this->getValidationRules());
+        $purchase = Purchase::findOrFail($id);
+        $purchase->update($request->all());
 
-        $purchase->update($request->only(['customer_name', 'total_amount']));
-
-        $purchase->products()->delete();
-        $this->attachProducts($purchase, $request->input('products'));
-
-        return response()->json(['message' => 'Purchase updated successfully']);
+        return response()->json($purchase, 200);
     }
 
-    public function destroy(Purchase $purchase)
+
+
+    public function destroy($id)
     {
-        $purchase->products()->delete();
+        $purchase = Purchase::findOrFail($id);
+
+        if (is_array($purchase->products)) {
+            // Update product quantities when deleting a purchase
+            foreach ($purchase->products as $productData) {
+                $product = Product::findOrFail($productData['product_id']);
+                $product->increment('quantity', $productData['quantity']);
+            }
+        }
+
         $purchase->delete();
 
-        return response()->json(['message' => 'Purchase deleted successfully']);
-    }
-
-    private function getValidationRules()
-    {
-        return [
-            'customer_name' => 'required|string',
-            'total_amount' => 'required|numeric',
-            'products' => 'required|array',
-            'products.*.name' => 'required|string',
-            'products.*.quantity' => 'required|integer',
-            'products.*.price' => 'required|numeric',
-            'products.*.cost' => 'required|numeric',
-        ];
-    }
-
-    private function attachProducts(Purchase $purchase, array $productsData)
-    {
-        foreach ($productsData as $productData) {
-            $product = new Product($productData);
-            $purchase->products()->save($product);
-        }
+        return response()->json('deleted successfully', 200);
     }
 }

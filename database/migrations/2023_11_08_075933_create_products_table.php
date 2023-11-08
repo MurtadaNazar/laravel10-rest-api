@@ -10,14 +10,11 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('purchase_id');
             $table->string('name');
             $table->integer('quantity');
             $table->decimal('price', 10, 2);
             $table->decimal('cost', 10, 2);
             $table->timestamps();
-
-            $table->foreign('purchase_id')->references('id')->on('purchases')->onDelete('cascade');
         });
     }
 

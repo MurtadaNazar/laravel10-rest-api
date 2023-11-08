@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "Git All purchases",
+			"name": "Get purchases",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -44,7 +44,7 @@
 			"response": []
 		},
 		{
-			"name": "Git specific purchase",
+			"name": "Get specific purchase",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -73,6 +73,42 @@
 					"path": [
 						"api",
 						"purchases",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get specific product",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
 						"1"
 					]
 				}
@@ -86,7 +122,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"customer_name\": \"Murtaza Nazar\",\r\n    \"total_amount\": 200.00,\r\n    \"products\": [\r\n      {\r\n        \"name\": \"Lenovo p50\",\r\n        \"quantity\": 5,\r\n        \"price\": 30.00,\r\n        \"cost\": 150.00\r\n      },\r\n      {\r\n        \"name\": \"Product 2\",\r\n        \"quantity\": 1,\r\n        \"price\": 50.00,\r\n        \"cost\": 50.00\r\n      }\r\n    ]\r\n  }",
+					"raw": "{\r\n    \"customer_name\": \"John Doe\",\r\n     \"products\": \r\n     [\r\n         {\"product_id\": 1, \"quantity\": 2},\r\n          {\"product_id\": 2, \"quantity\": 1}\r\n     ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -94,7 +130,39 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/purchases/",
+					"raw": "http://127.0.0.1:8000/api/purchases",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"purchases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update purchase",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_name\": \"John Doe\",\r\n     \"products\": \r\n     [\r\n         {\"product_id\": 1, \"quantity\": 4},\r\n          {\"product_id\": 2, \"quantity\": 1}\r\n     ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/purchases/5",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -106,6 +174,138 @@
 					"path": [
 						"api",
 						"purchases",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"name\": \"Lenovo p70\",\r\n    \"quantity\": 10,\r\n    \"price\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete purchase",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/purchases/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"purchases",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/7",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"name\": \"Lenovo p70\",\r\n    \"quantity\": 10,\r\n    \"price\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
 						""
 					]
 				}
@@ -113,46 +313,16 @@
 			"response": []
 		},
 		{
-			"name": "Update specific purchase",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"customer_name\": \"Murtaza Nazar\",\r\n    \"total_amount\": 200.00,\r\n    \"products\": [\r\n      {\r\n        \"name\": \"Lenovo p50\",\r\n        \"quantity\": 5,\r\n        \"price\": 30.00,\r\n        \"cost\": 150.00\r\n      },\r\n      {\r\n        \"name\": \"Product 2\",\r\n        \"quantity\": 1,\r\n        \"price\": 50.00,\r\n        \"cost\": 50.00\r\n      }\r\n    ]\r\n  }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/purchases/1",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"purchases",
-						"1"
-					]
-				}
+			"name": "Get products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
 			},
-			"response": []
-		},
-		{
-			"name": "Delete specific purchase",
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"customer_name\": \"Murtaza Nazar\",\r\n    \"total_amount\": 200.00,\r\n    \"products\": [\r\n      {\r\n        \"name\": \"Lenovo p50\",\r\n        \"quantity\": 5,\r\n        \"price\": 30.00,\r\n        \"cost\": 150.00\r\n      },\r\n      {\r\n        \"name\": \"Product 2\",\r\n        \"quantity\": 1,\r\n        \"price\": 50.00,\r\n        \"cost\": 50.00\r\n      }\r\n    ]\r\n  }",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -160,7 +330,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/purchases/1",
+					"raw": "http://127.0.0.1:8000/api/products/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -171,8 +341,8 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"purchases",
-						"1"
+						"products",
+						""
 					]
 				}
 			},

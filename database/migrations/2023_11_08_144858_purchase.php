@@ -11,7 +11,9 @@ class CreatePurchasesTable extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->string('customer_name');
-            $table->decimal('total_amount', 10, 2);
+            $table->integer('total_amount');
+            $table->decimal('total_price', 8, 2);
+            $table->json('products');
             $table->timestamps();
         });
     }
