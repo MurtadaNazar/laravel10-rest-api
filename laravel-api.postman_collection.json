@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "95081f1d-2aea-4c82-a23f-0ac66b534be9",
+		"name": "laravel-api",
+		"description": "# laravel 10,MySQL restAPI\n\nthe api is : http://127.0.0.1:8000/api/purchases/\n\nspecific api: http://127.0.0.1:8000/api/purchases/{id}",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21984345"
+	},
+	"item": [
+		{
+			"name": "Git All purchases",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/purchases/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"purchases",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Git specific purchase",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/purchases/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"purchases",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create purchase",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_name\": \"Murtaza Nazar\",\r\n    \"total_amount\": 200.00,\r\n    \"products\": [\r\n      {\r\n        \"name\": \"Lenovo p50\",\r\n        \"quantity\": 5,\r\n        \"price\": 30.00,\r\n        \"cost\": 150.00\r\n      },\r\n      {\r\n        \"name\": \"Product 2\",\r\n        \"quantity\": 1,\r\n        \"price\": 50.00,\r\n        \"cost\": 50.00\r\n      }\r\n    ]\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/purchases/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"purchases",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update specific purchase",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_name\": \"Murtaza Nazar\",\r\n    \"total_amount\": 200.00,\r\n    \"products\": [\r\n      {\r\n        \"name\": \"Lenovo p50\",\r\n        \"quantity\": 5,\r\n        \"price\": 30.00,\r\n        \"cost\": 150.00\r\n      },\r\n      {\r\n        \"name\": \"Product 2\",\r\n        \"quantity\": 1,\r\n        \"price\": 50.00,\r\n        \"cost\": 50.00\r\n      }\r\n    ]\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/purchases/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"purchases",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete specific purchase",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_name\": \"Murtaza Nazar\",\r\n    \"total_amount\": 200.00,\r\n    \"products\": [\r\n      {\r\n        \"name\": \"Lenovo p50\",\r\n        \"quantity\": 5,\r\n        \"price\": 30.00,\r\n        \"cost\": 150.00\r\n      },\r\n      {\r\n        \"name\": \"Product 2\",\r\n        \"quantity\": 1,\r\n        \"price\": 50.00,\r\n        \"cost\": 50.00\r\n      }\r\n    ]\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/purchases/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"purchases",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
